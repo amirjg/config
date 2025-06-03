@@ -55,7 +55,8 @@
       "tolerance": 150,
       "interrupt_exist_connections": true,
       "outbounds": [
-        "🎯 Direct"
+        "🎯 Direct",
+        "🐟 Fallback"
       ]
     },
     {
