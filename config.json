@@ -40,19 +40,38 @@
   ],
   "outbounds": [
     {
-      "type": "selector",
-      "tag": "select",
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "fallback",
-        "direct"
-      ]
-    },
-    {
+      // ─── 1) ابتدا یک خروجی ساده‌ی direct تعریف می‌کنیم ───
       "type": "direct",
       "tag": "direct"
     },
     {
+      // ─── 2) بعد از direct، بلوک urltest را تعریف می‌کنیم
+      //      چون urltest آرایهٔ outbounds دارد که تگ "direct" را ارجاع می‌دهد
+      "type": "urltest",
+      "tag": "auto",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 150,
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "direct"
+      ]
+    },
+    {
+      // ─── 3) سپس بلوک selector با تگ "select" را تعریف می‌کنیم
+      //      چون می‌خواهد به تگ‌های "auto" و "direct" ارجاع دهد که هردو
+      //      قبلاً بالا تعریف شده‌اند
+      "type": "selector",
+      "tag": "select",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "auto",
+        "direct"
+      ]
+    },
+    {
+      // ─── 4) بعد از آن، selector با تگ "fallback"
+      //      که به "select" و "direct" ارجاع می‌دهد
       "type": "selector",
       "tag": "fallback",
       "interrupt_exist_connections": true,
@@ -62,6 +81,8 @@
       ]
     },
     {
+      // ─── 5) در پایان، selector با تگ "global"
+      //      که به "select"، "direct" و "fallback" ارجاع دارد
       "type": "selector",
       "tag": "global",
       "interrupt_exist_connections": true,
