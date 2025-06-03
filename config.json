@@ -1,0 +1,256 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "output": "",
+    "timestamp": false
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:20123",
+      "external_ui": "",
+      "external_ui_download_url": "",
+      "external_ui_download_detour": "🎯 Direct",
+      "secret": "ID_xv3ik0b8",
+      "default_mode": "rule",
+      "access_control_allow_origin": [
+        "*"
+      ],
+      "access_control_allow_private_network": false
+    },
+    "cache_file": {
+      "enabled": true,
+      "path": "cache.db",
+      "cache_id": "",
+      "store_fakeip": true,
+      "store_rdrc": true,
+      "rdrc_timeout": "7d"
+    }
+  },
+  "inbounds": [
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 20122,
+      "tcp_fast_open": false,
+      "tcp_multi_path": false,
+      "udp_fragment": false
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "🚀 Select",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎈 Auto"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "🎈 Auto",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "3m",
+      "tolerance": 150,
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🎯 Direct"
+      ]
+    },
+    {
+      "type": "direct",
+      "tag": "🎯 Direct"
+    },
+    {
+      "type": "selector",
+      "tag": "🐟 Fallback",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🚀 Select",
+        "🎯 Direct"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "GLOBAL",
+      "interrupt_exist_connections": true,
+      "outbounds": [
+        "🚀 Select",
+        "🎈 Auto",
+        "🎯 Direct",
+        "🐟 Fallback"
+      ]
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "hijack-dns",
+        "protocol": "dns"
+      },
+      {
+        "action": "route",
+        "clash_mode": "direct",
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "clash_mode": "global",
+        "outbound": "GLOBAL"
+      },
+      {
+        "action": "reject",
+        "protocol": "quic"
+      },
+      {
+        "action": "reject",
+        "rule_set": [
+          "Category-Ads"
+        ]
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoSite-Private"
+        ],
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoSite-CN"
+        ],
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoIP-Private"
+        ],
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoIP-CN"
+        ],
+        "outbound": "🎯 Direct"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoLocation-!CN"
+        ],
+        "outbound": "🚀 Select"
+      }
+    ],
+    "rule_set": [
+      {
+        "tag": "Category-Ads",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoIP-Private",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoSite-Private",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoIP-CN",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoSite-CN",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      },
+      {
+        "tag": "GeoLocation-!CN",
+        "type": "remote",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
+        "format": "binary",
+        "download_detour": "🎯 Direct"
+      }
+    ],
+    "auto_detect_interface": true,
+    "final": "🐟 Fallback"
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "Local-DNS",
+        "address": "https://223.5.5.5:443/dns-query",
+        "address_resolver": "Local-DNS-Resolver",
+        "detour": "🎯 Direct"
+      },
+      {
+        "tag": "Local-DNS-Resolver",
+        "address": "udp://223.5.5.5:53",
+        "detour": "🎯 Direct"
+      },
+      {
+        "tag": "Remote-DNS",
+        "address": "tls://8.8.8.8:853",
+        "address_resolver": "Remote-DNS-Resolver",
+        "detour": "🚀 Select"
+      },
+      {
+        "tag": "Remote-DNS-Resolver",
+        "address": "udp://8.8.8.8:53",
+        "detour": "🚀 Select"
+      }
+    ],
+    "rules": [
+      {
+        "action": "route",
+        "server": "Local-DNS",
+        "outbound": "any"
+      },
+      {
+        "action": "route",
+        "clash_mode": "direct",
+        "server": "Local-DNS"
+      },
+      {
+        "action": "route",
+        "clash_mode": "global",
+        "server": "Remote-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoSite-CN"
+        ],
+        "server": "Local-DNS"
+      },
+      {
+        "action": "route",
+        "rule_set": [
+          "GeoLocation-!CN"
+        ],
+        "server": "Remote-DNS"
+      }
+    ],
+    "disable_cache": false,
+    "disable_expire": false,
+    "independent_cache": false,
+    "final": "Remote-DNS"
+  }
+}
