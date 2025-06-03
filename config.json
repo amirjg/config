@@ -10,7 +10,7 @@
       "external_controller": "127.0.0.1:20123",
       "external_ui": "",
       "external_ui_download_url": "",
-      "external_ui_download_detour": "🎯 Direct",
+      "external_ui_download_detour": "direct",
       "secret": "ID_xv3ik0b8",
       "default_mode": "rule",
       "access_control_allow_origin": [
@@ -41,46 +41,45 @@
   "outbounds": [
     {
       "type": "selector",
-      "tag": "🚀 Select",
+      "tag": "select",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "🎈 Auto"
+        "auto"
       ]
     },
     {
       "type": "urltest",
-      "tag": "🎈 Auto",
+      "tag": "auto",
+      "outbounds": [
+        "direct"
+      ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
       "tolerance": 150,
-      "interrupt_exist_connections": true,
-      "outbounds": [
-        "🎯 Direct",
-        "🐟 Fallback"
-      ]
+      "interrupt_exist_connections": true
     },
     {
       "type": "direct",
-      "tag": "🎯 Direct"
+      "tag": "direct"
     },
     {
       "type": "selector",
-      "tag": "🐟 Fallback",
+      "tag": "fallback",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "🚀 Select",
-        "🎯 Direct"
+        "select",
+        "direct"
       ]
     },
     {
       "type": "selector",
-      "tag": "GLOBAL",
+      "tag": "global",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "🚀 Select",
-        "🎈 Auto",
-        "🎯 Direct",
-        "🐟 Fallback"
+        "select",
+        "auto",
+        "direct",
+        "fallback"
       ]
     }
   ],
@@ -93,12 +92,12 @@
       {
         "action": "route",
         "clash_mode": "direct",
-        "outbound": "🎯 Direct"
+        "outbound": "direct"
       },
       {
         "action": "route",
         "clash_mode": "global",
-        "outbound": "GLOBAL"
+        "outbound": "global"
       },
       {
         "action": "reject",
@@ -115,35 +114,35 @@
         "rule_set": [
           "GeoSite-Private"
         ],
-        "outbound": "🎯 Direct"
+        "outbound": "direct"
       },
       {
         "action": "route",
         "rule_set": [
           "GeoSite-CN"
         ],
-        "outbound": "🎯 Direct"
+        "outbound": "direct"
       },
       {
         "action": "route",
         "rule_set": [
           "GeoIP-Private"
         ],
-        "outbound": "🎯 Direct"
+        "outbound": "direct"
       },
       {
         "action": "route",
         "rule_set": [
           "GeoIP-CN"
         ],
-        "outbound": "🎯 Direct"
+        "outbound": "direct"
       },
       {
         "action": "route",
         "rule_set": [
           "GeoLocation-!CN"
         ],
-        "outbound": "🚀 Select"
+        "outbound": "select"
       }
     ],
     "rule_set": [
@@ -152,46 +151,46 @@
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
         "format": "binary",
-        "download_detour": "🎯 Direct"
+        "download_detour": "direct"
       },
       {
         "tag": "GeoIP-Private",
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/private.srs",
         "format": "binary",
-        "download_detour": "🎯 Direct"
+        "download_detour": "direct"
       },
       {
         "tag": "GeoSite-Private",
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
         "format": "binary",
-        "download_detour": "🎯 Direct"
+        "download_detour": "direct"
       },
       {
         "tag": "GeoIP-CN",
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
         "format": "binary",
-        "download_detour": "🎯 Direct"
+        "download_detour": "direct"
       },
       {
         "tag": "GeoSite-CN",
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
         "format": "binary",
-        "download_detour": "🎯 Direct"
+        "download_detour": "direct"
       },
       {
         "tag": "GeoLocation-!CN",
         "type": "remote",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
         "format": "binary",
-        "download_detour": "🎯 Direct"
+        "download_detour": "direct"
       }
     ],
     "auto_detect_interface": true,
-    "final": "🐟 Fallback"
+    "final": "fallback"
   },
   "dns": {
     "servers": [
@@ -199,23 +198,23 @@
         "tag": "Local-DNS",
         "address": "https://223.5.5.5:443/dns-query",
         "address_resolver": "Local-DNS-Resolver",
-        "detour": "🎯 Direct"
+        "detour": "direct"
       },
       {
         "tag": "Local-DNS-Resolver",
         "address": "udp://223.5.5.5:53",
-        "detour": "🎯 Direct"
+        "detour": "direct"
       },
       {
         "tag": "Remote-DNS",
         "address": "tls://8.8.8.8:853",
         "address_resolver": "Remote-DNS-Resolver",
-        "detour": "🚀 Select"
+        "detour": "select"
       },
       {
         "tag": "Remote-DNS-Resolver",
         "address": "udp://8.8.8.8:53",
-        "detour": "🚀 Select"
+        "detour": "select"
       }
     ],
     "rules": [
