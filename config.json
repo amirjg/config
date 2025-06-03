@@ -44,19 +44,9 @@
       "tag": "select",
       "interrupt_exist_connections": true,
       "outbounds": [
-        "auto"
-      ]
-    },
-    {
-      "type": "urltest",
-      "tag": "auto",
-      "outbounds": [
+        "fallback",
         "direct"
-      ],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "3m",
-      "tolerance": 150,
-      "interrupt_exist_connections": true
+      ]
     },
     {
       "type": "direct",
@@ -77,7 +67,6 @@
       "interrupt_exist_connections": true,
       "outbounds": [
         "select",
-        "auto",
         "direct",
         "fallback"
       ]
