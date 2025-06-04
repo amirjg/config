@@ -7,14 +7,14 @@
     "servers": [
       {
         "tag": "dns_proxy",
-        "address": "tcp://8.8.8.8",
+        "address": "tcp://45.90.28.102",
         "address_resolver": "dns_direct",
         "strategy": "prefer_ipv4",
-        "detour": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠"
+        "detour": "👉🏻@SiNAVM"
       },
       {
         "tag": "dns_direct",
-        "address": "tcp://8.8.8.8",
+        "address": "local",
         "strategy": "prefer_ipv4",
         "detour": "direct"
       },
@@ -111,9 +111,9 @@
   "outbounds": [
     {
       "type": "hysteria2",
-      "tag": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠",
+      "tag": "👉🏻@SiNAVM",
       "domain_strategy": "ipv4_only",
-      "server": "JNIR-3.pichondan.com",
+      "server": "JNIR-1.pichondan.com",
       "server_port": 0,
       "server_ports": "35000:45000",
       "hop_interval": "3m30s",
@@ -181,7 +181,7 @@
       },
       {
         "protocol": "quic",
-        "outbound": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠"
+        "outbound": "block"
       },
       {
         "rule_set": [
@@ -280,7 +280,7 @@
         "update_interval": "72h0m0s"
       }
     ],
-    "final": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠",
+    "final": "👉🏻@SiNAVM",
     "auto_detect_interface": true,
     "override_android_vpn": true
   },
@@ -291,7 +291,7 @@
       "store_fakeip": true
     },
     "clash_api": {
-      "default_mode": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠"
+      "default_mode": "👉🏻@SiNAVM"
     }
   }
 }
