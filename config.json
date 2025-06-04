@@ -7,14 +7,14 @@
     "servers": [
       {
         "tag": "dns_proxy",
-        "address": "tcp://45.90.28.102",
+        "address": "tcp://208.67.222.222",
         "address_resolver": "dns_direct",
         "strategy": "prefer_ipv4",
-        "detour": "👉🏻@SiNAVM"
+        "detour": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠"
       },
       {
         "tag": "dns_direct",
-        "address": "local",
+        "address": "tcp://208.67.220.220",
         "strategy": "prefer_ipv4",
         "detour": "direct"
       },
@@ -111,9 +111,9 @@
   "outbounds": [
     {
       "type": "hysteria2",
-      "tag": "👉🏻@SiNAVM",
+      "tag": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠",
       "domain_strategy": "ipv4_only",
-      "server": "JNIR-1.pichondan.com",
+      "server": "JNIR-3.pichondan.com",
       "server_port": 0,
       "server_ports": "35000:45000",
       "hop_interval": "3m30s",
@@ -185,11 +185,11 @@
       },
       {
         "rule_set": [
-          "geosite-malware",
-          "geosite-phishing",
-          "geosite-cryptominers",
-          "geoip-malware",
-          "geoip-phishing"
+    "geosite-malware",
+    "geosite-phishing",
+    "geosite-cryptominers",
+    "geoip-malware",
+    "geoip-phishing"
         ],
         "action": "reject",
         "method": "default"
@@ -280,9 +280,8 @@
         "update_interval": "72h0m0s"
       }
     ],
-    "final": "👉🏻@SiNAVM",
+    "final": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠",
     "auto_detect_interface": true,
-    "override_android_vpn": true
   },
   "experimental": {
     "cache_file": {
@@ -291,7 +290,7 @@
       "store_fakeip": true
     },
     "clash_api": {
-      "default_mode": "👉🏻@SiNAVM"
+      "default_mode": "𝐒𝐕𝐌 | 👉🏻@𝗦𝗶𝗡𝗔𝗩𝗠"
     }
   }
 }
