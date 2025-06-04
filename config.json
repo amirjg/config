@@ -14,7 +14,7 @@
       },
       {
         "tag": "dns_direct",
-        "address": "local",
+        "address": "tcp://8.8.8.8",
         "strategy": "prefer_ipv4",
         "detour": "direct"
       },
