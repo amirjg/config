@@ -126,6 +126,7 @@
   ],
   "outbounds": [
     {
+      "domain_strategy": "ipv4_only",
       "server": "JNIR-1.pichondan.com",
       "server_port": 0,
       "server_ports": "35000:45000",
@@ -154,7 +155,7 @@
           ]
         }
       },
-      "hop_interval": 210
+      "hop_interval": "3m30s"
     },
     {
       "type": "urltest",
