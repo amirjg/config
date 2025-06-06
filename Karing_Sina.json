@@ -1,257 +1,35 @@
 {
-  "experimental": {
-    "clash_api": {
-      "external_controller": "",
-      "secret": ""
-    },
-    "debug": {
-      "max_threads": null,
-      "panic_on_fault": false,
-      "listen": null
-    },
-    "cache_file": {
-      "enabled": false,
-      "path": "",
-      "store_fakeip": true
-    }
+  "server": "JNIR-1.pichondan.com",
+  "server_port": 35010,
+  "tag": "SINA",
+  "type": "hysteria2",
+  "attach": "",
+  "hop_interval": "3m30s",
+  "password": "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi",
+  "obfs": {
+    "password": "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi",
+    "type": "salamander"
   },
-  "log": {
-    "disabled": false,
-    "level": "info",
-    "output": "",
-    "timestamp": true
-  },
-  "ntp": {
+  "tls": {
     "enabled": true,
-    "server": "pool.ntp.org",
-    "server_port": 123,
-    "interval": "12h",
-    "detour": "direct_out"
-  },
-  "dns": {
-    "final": "dns_proxy_out",
-    "rules": [
-      {
-        "domain": [
-          "jnir-1.pichondan.com"
-        ],
-        "server": "dns_outbound_out",
-        "rewrite_ttl": 43200
-      },
-      {
-        "domain_suffix": [
-          "o4508911573663744.ingest.sentry.io"
-        ],
-        "server": "dns_direct_out",
-        "rewrite_ttl": 43200
-      },
-      {
-        "domain_suffix": [
-          "speed.cloudflare.com"
-        ],
-        "server": "dns_proxy_out",
-        "rewrite_ttl": 43200
-      },
-      {
-        "domain_suffix": [
-          "karing.app"
-        ],
-        "server": "dns_proxy_out",
-        "rewrite_ttl": 43200
-      },
-      {
-        "rule_set": [
-          "geosite:ir"
-        ],
-        "server": "dns_direct_out",
-        "rewrite_ttl": 43200
-      }
+    "server_name": "pichondan.com",
+    "alpn": [
+      "h3"
     ],
-    "servers": [
-      {
-        "tag": "dns_outbound_out",
-        "address": "local"
-      },
-      {
-        "tag": "dns_direct_out",
-        "address": "local"
-      },
-      {
-        "tag": "dns_proxy_out",
-        "address": "https://1.1.1.1/dns-query",
-        "address_resolver": "dns_resolver_out",
-        "detour": "urltest_out"
-      },
-      {
-        "tag": "dns_resolver_out",
-        "address": "local"
-      },
-      {
-        "tag": "dns_block_out",
-        "address": "rcode://success"
-      }
-    ],
-    "strategy": "ipv4_only",
-    "independent_cache": true,
-    "cache_capacity": 1024
-  },
-  "inbounds": [
-    {
-      "type": "mixed",
-      "tag": "mixed_in_direct",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3065,
-      "sniff": true,
-      "sniff_override_destination": false
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed_in_proxy",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3066,
-      "sniff": true,
-      "sniff_override_destination": false
-    },
-    {
-      "type": "mixed",
-      "tag": "mixed_in_rule",
-      "set_system_proxy": false,
-      "listen": "127.0.0.1",
-      "listen_port": 3067,
-      "sniff": true,
-      "sniff_override_destination": false
-    }
-  ],
-  "outbounds": [
-    {
-      "domain_strategy": "ipv4_only",
-      "server": "JNIR-1.pichondan.com",
-      "server_port": 0,
-      "server_ports": "35000:45000",
-      "tag": "Sina",
-      "type": "hysteria2",
-      "password": "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi",
-      "obfs": {
-        "password": "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi",
-        "type": "salamander"
-      },
-      "tls": {
-        "enabled": true,
-        "server_name": "pichondan.com",
-        "alpn": [
-          "h3"
-        ],
-        "min_version": "1.3",
-        "max_version": "1.3",
-        "ech": {
-          "enabled": true,
-          "config": [
-            "-----BEGIN ECH CONFIGS-----",
-            "AEv+DQBHAAAgACBdESPqW7Qg/mDy4xXQg7m3zPFrxI5Ba5zro2ZMqOjQFQAIAAEA",
-            "AQABAAMAFGpuaXItMS5waWNob25kYW4uY29tAAA=",
-            "-----END ECH CONFIGS-----"
-          ]
-        }
-      },
-      "hop_interval": "3m30s"
-    },
-    {
-      "type": "urltest",
-      "tag": "urltest_out",
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "8h",
-      "interrupt_exist_connections": false,
-      "idle_timeout": "8h",
-      "outbounds": [
-        "Sina"
+    "min_version": "1.3",
+    "max_version": "1.3",
+    "ech": {
+      "enabled": true,
+      "config": [
+        "-----BEGIN ECH CONFIGS-----",
+        "AEv+DQBHAAAgACBdESPqW7Qg/mDy4xXQg7m3zPFrxI5Ba5zro2ZMqOjQFQAIAAEA",
+        "AQABAAMAFGpuaXItMS5waWNob25kYW4uY29tAAA=",
+        "-----END ECH CONFIGS-----"
       ]
-    },
-    {
-      "type": "direct",
-      "tag": "direct_out"
-    },
-    {
-      "type": "block",
-      "tag": "block_out"
-    },
-    {
-      "type": "dns",
-      "tag": "dns_out"
     }
-  ],
-  "route": {
-    "final": "urltest_out",
-    "find_process": false,
-    "auto_detect_interface": true,
-    "rules": [
-      {
-        "inbound": [
-          "mixed_in_direct"
-        ],
-        "outbound": "direct_out"
-      },
-      {
-        "inbound": [
-          "mixed_in_proxy"
-        ],
-        "outbound": "urltest_out"
-      },
-      {
-        "protocol": "dns",
-        "outbound": "dns_out"
-      },
-      {
-        "domain_suffix": [
-          "o4508911573663744.ingest.sentry.io"
-        ],
-        "outbound": "direct_out"
-      },
-      {
-        "domain_suffix": [
-          "speed.cloudflare.com"
-        ],
-        "outbound": "urltest_out"
-      },
-      {
-        "domain_suffix": [
-          "karing.app"
-        ],
-        "outbound": "direct_out"
-      },
-      {
-        "rule_set": [
-          "geosite:ir"
-        ],
-        "outbound": "direct_out"
-      },
-      {
-        "rule_set": [
-          "geoip:ir"
-        ],
-        "outbound": "direct_out"
-      },
-      {
-        "ip_is_private": true,
-        "outbound": "direct_out"
-      }
-    ],
-    "rule_set": [
-      {
-        "tag": "geosite:ir",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/ir.srs",
-        "download_detour": "urltest_out"
-      },
-      {
-        "tag": "geoip:ir",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geoip/ir.srs",
-        "download_detour": "urltest_out"
-      }
-    ]
-  }
+  },
+  "groupid": "cb79694e-d6f9-45b3-9b54-d7d8f85357e6",
+  "latency": "80",
+  "outlet_ip": "",
+  "outlet_region": ""
 }
