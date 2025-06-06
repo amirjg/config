@@ -128,7 +128,7 @@
     {
       "server": "JNIR-1.pichondan.com",
       "server_port": 0,
-      "server_ports": 35000-45000,
+      "server_ports": "35000:45000",
       "tag": "Sina",
       "type": "hysteria2",
       "password": "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi",
