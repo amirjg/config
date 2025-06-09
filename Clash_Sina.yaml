@@ -5,19 +5,19 @@ proxies:
     port: 0
     up: "1000 Mbps"
     down: "1000 Mbps"
-    password: @JavidnamanIran-Javid-SHAH-KingRezaPahlavi
+    password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
     obfs: salamander
-    obfs-password: @JavidnamanIran-Javid-SHAH-KingRezaPahlavi
+    obfs-password: "@JavidnamanIran-Javid-SHAH-KingRezaPahlavi"
     sni: pichondan.com
     alpn:
       - h3
     ports: "35000-45000"
-    hop-interval: 3m30s
+    hop-interval: 210
     ech: -----BEGIN ECH CONFIGS-----AEv+DQBHAAAgACBdESPqW7Qg/mDy4xXQg7m3zPFrxI5Ba5zro2ZMqOjQFQAIAAEAAQABAAMAFGpuaXItMS5waWNob25kYW4uY29tAAA=-----END ECH CONFIGS-----
 
 
 proxy-groups:
-- name: Sina
+- name: Proxy
   type: select
   icon: https://res.cloudinary.com/dbulfrlrz/image/upload/v1703162849/static/logos/icons/vpn_f9embt.svg
   proxies:
