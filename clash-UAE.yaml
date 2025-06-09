@@ -1,0 +1,34 @@
+proxies:
+- name: UAE_route
+  type: wireguard
+  server: 103.57.251.208
+  port: 15295
+  ip: 10.103.32.112
+  private-key: 2FLDqiTHaC23EJ+asQnvS4uq1IeS8ksKreqbAgixSH0=
+  public-key: ILAtIvb6kSHCQ7Kx1a525lc8DWs+AFs+aUKHfTNzlHw=
+  allowed-ips: ['0.0.0.0/0']
+  pre-shared-key: e1wqDP5Yb4S5Tfiu/XHLEcG/pzXOfHRv2f061Bssiug=
+  udp: true
+  mtu: 1420
+  remote-dns-resolve: true
+  dns: [10.100.0.1]
+  amnezia-wg-option:
+    jc: 3
+    jmin: 40
+    jmax: 70
+    s1: 0
+    s2: 0
+    h1: 1
+    h2: 2
+    h3: 3
+    h4: 4
+
+proxy-groups:
+- name: Other
+  type: select
+  icon: https://raw.githubusercontent.com/zaeboba/page/refs/heads/main/archive/amnezia.svg
+  proxies:
+    - UAE_route
+  url: 'http://speed.cloudflare.com/'
+  unified-delay: true
+  interval: 300
