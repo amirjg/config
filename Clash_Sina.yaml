@@ -1,22 +1,21 @@
 proxies:
-- name: Sina
-  type: hysteria2
-  server: JNIR-1.pichondan.com
-  port: 35010
-  hop_interval: 3m30s
-  password: @JavidnamanIran-Javid-SHAH-KingRezaPahlavi
-  obfs:
+  - name: "Sina"
+    type: hysteria2
+    server: JNIR-1.pichondan.com
+    port: 0
+    up: "1000 Mbps"
+    down: "1000 Mbps"
     password: @JavidnamanIran-Javid-SHAH-KingRezaPahlavi
-    type: salamander
-  tls:
-    enabled: true
-    server_name: pichondan.com
-    alpn: h3
-    min_version: 1.3
-    max_version: 1.3
-    ech:
-      enabled: true
-      config: -----BEGIN ECH CONFIGS-----AEv+DQBHAAAgACBdESPqW7Qg/mDy4xXQg7m3zPFrxI5Ba5zro2ZMqOjQFQAIAAEAAQABAAMAFGpuaXItMS5waWNob25kYW4uY29tAAA=-----END ECH CONFIGS-----
+    obfs: salamander
+    obfs-password: @JavidnamanIran-Javid-SHAH-KingRezaPahlavi
+    sni: server.com
+    skip-cert-verify: false
+     # fingerprint: xxxx
+    alpn:
+      - h3
+    ports: "35000-45000"
+    hop-interval: 3m30s
+    ech: -----BEGIN ECH CONFIGS-----AEv+DQBHAAAgACBdESPqW7Qg/mDy4xXQg7m3zPFrxI5Ba5zro2ZMqOjQFQAIAAEAAQABAAMAFGpuaXItMS5waWNob25kYW4uY29tAAA=-----END ECH CONFIGS-----
 
 
 proxy-groups:
