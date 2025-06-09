@@ -8,9 +8,7 @@ proxies:
     password: @JavidnamanIran-Javid-SHAH-KingRezaPahlavi
     obfs: salamander
     obfs-password: @JavidnamanIran-Javid-SHAH-KingRezaPahlavi
-    sni: server.com
-    skip-cert-verify: false
-     # fingerprint: xxxx
+    sni: pichondan.com
     alpn:
       - h3
     ports: "35000-45000"
